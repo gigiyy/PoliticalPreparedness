@@ -70,7 +70,11 @@ dependencies {
     // Glide
     //TODO: Add Glide Implementation
 
+    // RecyclerView
+    implementation "androidx.recyclerview:recyclerview:$version_recyclerview"
+
     //Room
+    implementation "androidx.room:room-ktx:$version_room"
     implementation "androidx.room:room-runtime:$version_room"
     kapt "androidx.room:room-compiler:$version_room"
 
