@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android.politicalpreparedness.database.ElectionDatabase
 import com.example.android.politicalpreparedness.databinding.FragmentElectionBinding
 import com.example.android.politicalpreparedness.election.adapter.ElectionListAdapter
 import com.example.android.politicalpreparedness.election.adapter.ElectionListener
@@ -19,7 +20,8 @@ class ElectionsFragment : Fragment() {
 
     //TODO: Declare ViewModel
     private val viewModel: ElectionsViewModel by lazy {
-        ViewModelProvider(this, ElectionsViewModelFactory(requireActivity().application)).get(
+        val database = ElectionDatabase.getInstance(requireContext()).electionDao
+        ViewModelProvider(this, ElectionsViewModelFactory(database)).get(
             ElectionsViewModel::class.java
         )
     }
@@ -46,12 +48,19 @@ class ElectionsFragment : Fragment() {
         })
 
         //TODO: Initiate recycler adapters
-        binding.upcomingList.adapter =  upcomingAdapter
+        binding.upcomingList.adapter = upcomingAdapter
         binding.savedList.adapter = savedAdapter
 
         viewModel.navigateToVoterInfo.observe(viewLifecycleOwner, Observer { election ->
-            findNavController().navigate(ElectionsFragmentDirections.actionElectionsFragmentToVoterInfoFragment(election.id, election.division))
-            viewModel.doneNavigationOfVoterInfo()
+            election?.let {
+                findNavController().navigate(
+                    ElectionsFragmentDirections.actionElectionsFragmentToVoterInfoFragment(
+                        election.id,
+                        election.division
+                    )
+                )
+                viewModel.doneNavigationOfVoterInfo()
+            }
         })
 
         //TODO: Populate recycler adapters

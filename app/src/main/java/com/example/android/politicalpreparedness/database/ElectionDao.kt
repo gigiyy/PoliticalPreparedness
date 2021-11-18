@@ -17,7 +17,7 @@ interface ElectionDao {
 
     //TODO: Add select single election query
     @Query("select * from election_table where id = :electionId")
-    suspend fun findElection(electionId: Long): Election?
+    fun findElection(electionId: Long): LiveData<Election>
 
     //TODO: Add delete query
     @Query("delete from election_table where id = :electionId")

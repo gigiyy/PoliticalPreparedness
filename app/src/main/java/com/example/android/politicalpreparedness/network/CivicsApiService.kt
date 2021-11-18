@@ -1,5 +1,7 @@
 package com.example.android.politicalpreparedness.network
 
+import com.example.android.politicalpreparedness.network.jsonadapter.DateJsonAdapter
+import com.example.android.politicalpreparedness.network.jsonadapter.ElectionAdapter
 import com.example.android.politicalpreparedness.network.models.ElectionResponse
 import com.example.android.politicalpreparedness.network.models.RepresentativeResponse
 import com.example.android.politicalpreparedness.network.models.VoterInfoResponse
@@ -11,6 +13,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
+import java.util.*
 
 private const val BASE_URL = "https://www.googleapis.com/civicinfo/v2/"
 private const val ELECTIONS_URL = "elections"
@@ -19,6 +22,8 @@ private const val REPRESENTATIVES_URL = "representatives"
 
 // TODO: Add adapters for Java Date and custom adapter ElectionAdapter (included in project)
 private val moshi = Moshi.Builder()
+    .add(ElectionAdapter())
+    .add(Date::class.java, DateJsonAdapter())
     .add(KotlinJsonAdapterFactory())
     .build()
 
