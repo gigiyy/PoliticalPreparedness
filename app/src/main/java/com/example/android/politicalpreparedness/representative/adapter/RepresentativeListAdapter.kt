@@ -3,7 +3,7 @@ package com.example.android.politicalpreparedness.representative.adapter
 import android.content.Intent
 import android.content.Intent.ACTION_VIEW
 import android.net.Uri
-import android.opengl.Visibility
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,6 +29,8 @@ class RepresentativeListAdapter :
     }
 }
 
+private const val TAG = "RepresentativeListAdapter"
+
 class RepresentativeViewHolder(val binding: RepresentativeItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
@@ -36,8 +38,13 @@ class RepresentativeViewHolder(val binding: RepresentativeItemBinding) :
         binding.representative = item
         binding.representativePhoto.setImageResource(R.drawable.ic_profile)
 
+        binding.facebookIcon.visibility = View.GONE
+        binding.twitterIcon.visibility = View.GONE
+        binding.wwwIcon.visibility = View.GONE
+
         //TODO: Show social links ** Hint: Use provided helper methods
         item.official.channels?.let {
+            Log.d(TAG, item.official.name + " - " + it.toString())
             showSocialLinks(it)
         }
         //TODO: Show www link ** Hint: Use provided helper methods
