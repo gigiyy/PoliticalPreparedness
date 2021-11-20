@@ -72,10 +72,3 @@ class ElectionsFragment : Fragment() {
 
 }
 
-@BindingAdapter("elections")
-fun bindRecycleView(recyclerView: RecyclerView, data: List<Election>?) {
-    val adapter = recyclerView.adapter as ElectionListAdapter
-    adapter.submitList(data) {
-        recyclerView.scrollToPosition(0)
-    }
-}
