@@ -7,9 +7,11 @@ import android.os.Bundle
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.android.politicalpreparedness.databinding.FragmentElectionBinding
 import com.example.android.politicalpreparedness.databinding.FragmentRepresentativeBinding
 import com.example.android.politicalpreparedness.network.models.Address
+import com.example.android.politicalpreparedness.representative.adapter.RepresentativeListAdapter
 import java.util.Locale
 
 class DetailFragment : Fragment() {
@@ -19,6 +21,9 @@ class DetailFragment : Fragment() {
     }
 
     //TODO: Declare ViewModel
+    private val viewModel: RepresentativeViewModel by lazy {
+        ViewModelProvider(this).get(RepresentativeViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,10 +36,19 @@ class DetailFragment : Fragment() {
         binding.lifecycleOwner = this
 
         //TODO: Define and assign Representative adapter
+        binding.viewModel = viewModel
+        binding.representativeList.adapter = RepresentativeListAdapter()
 
         //TODO: Populate Representative adapter
 
         //TODO: Establish button listeners for field and location search
+        binding.buttonSearch.setOnClickListener {
+            val address =
+                Address("1600 Amphitheatre Pkwy", null, "Mountain View", "California", "94043")
+            viewModel.findRepresentatives(address)
+            hideKeyboard()
+        }
+
         return binding.root
 
     }

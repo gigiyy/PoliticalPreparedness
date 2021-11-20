@@ -5,43 +5,67 @@
     <data>
 
         <variable
+            name="clickListener"
+            type="com.example.android.politicalpreparedness.representative.adapter.RepresentativeListener" />
+
+        <variable
             name="representative"
             type="com.example.android.politicalpreparedness.representative.model.Representative" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onClick(representative)}">
 
         <androidx.constraintlayout.utils.widget.ImageFilterView
             android:id="@+id/representative_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:profileImage="@{representative.official.photoUrl}"
+            app:srcCompat="@drawable/ic_profile" />
+
+        <TextView
+            android:id="@+id/official_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{representative.official.name}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/representative_photo"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/social_link_layout"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:gravity="end"
             android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/representative_photo">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/representative_photo"
+            app:layout_constraintTop_toBottomOf="@id/official_name">
 
             <androidx.constraintlayout.utils.widget.ImageFilterView
                 android:id="@+id/facebook_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_facebook" />
 
             <androidx.constraintlayout.utils.widget.ImageFilterView
                 android:id="@+id/twitter_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_twitter" />
 
             <androidx.constraintlayout.utils.widget.ImageFilterView
                 android:id="@+id/www_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_www" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 

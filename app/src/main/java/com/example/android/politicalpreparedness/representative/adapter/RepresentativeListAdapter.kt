@@ -3,6 +3,7 @@ package com.example.android.politicalpreparedness.representative.adapter
 import android.content.Intent
 import android.content.Intent.ACTION_VIEW
 import android.net.Uri
+import android.opengl.Visibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,7 +37,13 @@ class RepresentativeViewHolder(val binding: RepresentativeItemBinding) :
         binding.representativePhoto.setImageResource(R.drawable.ic_profile)
 
         //TODO: Show social links ** Hint: Use provided helper methods
+        item.official.channels?.let {
+            showSocialLinks(it)
+        }
         //TODO: Show www link ** Hint: Use provided helper methods
+        item.official.urls?.let {
+            showWWWLinks(it)
+        }
 
         binding.executePendingBindings()
     }
@@ -103,3 +110,6 @@ class RepresentativeDiffCallback : DiffUtil.ItemCallback<Representative>() {
 }
 
 //TODO: Create RepresentativeListener
+class RepresentativeListener(val clickListener: (representative: Representative) -> Unit) {
+    fun onClick(representative: Representative) = clickListener(representative)
+}
