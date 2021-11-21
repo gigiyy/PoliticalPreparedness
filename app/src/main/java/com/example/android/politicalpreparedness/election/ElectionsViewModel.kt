@@ -21,8 +21,7 @@ class ElectionsViewModel(electionDao: ElectionDao) : ViewModel() {
     val upcoming = _upcoming
 
     //TODO: Create live data val for saved elections
-    private val _saved = MutableLiveData<List<Election>>()
-    val saved = _saved
+    val saved = database.findAll()
 
     private val _navigateToVoterInfo = MutableLiveData<Election>()
     val navigateToVoterInfo = _navigateToVoterInfo
@@ -36,9 +35,6 @@ class ElectionsViewModel(electionDao: ElectionDao) : ViewModel() {
         viewModelScope.launch {
             val electionResponse = CivicsApi.retrofitService.getElectionsAsync().await()
             _upcoming.value = electionResponse.elections
-        }
-        Transformations.switchMap(_saved) {
-            database.findAll()
         }
     }
 
