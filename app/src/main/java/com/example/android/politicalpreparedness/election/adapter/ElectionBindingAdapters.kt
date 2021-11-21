@@ -1,7 +1,6 @@
 package com.example.android.politicalpreparedness.election.adapter
 
 import android.icu.text.DateFormat
-import android.icu.text.SimpleDateFormat
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView

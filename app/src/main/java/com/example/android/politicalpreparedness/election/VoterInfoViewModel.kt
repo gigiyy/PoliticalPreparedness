@@ -1,11 +1,9 @@
 package com.example.android.politicalpreparedness.election
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.android.politicalpreparedness.database.ElectionDao
 import com.example.android.politicalpreparedness.network.CivicsApi
+import com.example.android.politicalpreparedness.network.models.AdministrationBody
 import com.example.android.politicalpreparedness.network.models.Division
 import com.example.android.politicalpreparedness.network.models.Election
 import com.example.android.politicalpreparedness.network.models.VoterInfoResponse
@@ -20,6 +18,20 @@ class VoterInfoViewModel(private val dataSource: ElectionDao) : ViewModel() {
     val voterInfo: LiveData<VoterInfoResponse> = _voterInfo
 
     //TODO: Add var and methods to support loading URLs
+    val administrationBody: LiveData<AdministrationBody> = Transformations.map(_voterInfo) {
+        it?.state?.first()?.electionAdministrationBody
+    }
+
+    private val _targetUrl = MutableLiveData<String>()
+    val targetUrl: LiveData<String> = _targetUrl
+
+    fun setTargetUrl(url: String) {
+        _targetUrl.value = url
+    }
+
+    fun doneNavigation() {
+        _targetUrl.value = null
+    }
 
     //TODO: Add var and methods to save and remove elections to local database
     //TODO: cont'd -- Populate initial state of save button to reflect proper action based on election saved status
