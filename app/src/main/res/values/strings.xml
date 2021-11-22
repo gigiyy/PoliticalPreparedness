@@ -13,6 +13,8 @@
     <string name="correspondence_information">Correspondence Information</string>
     <string name="unfollow_election">Unfollow Election</string>
     <string name="follow_election">Follow Election</string>
+    <string name="location_access_denied">Please enable location access to retrieve your current address for you!</string>
+    <string name="no_address_provided">Please input your address to search</string>
 
     <!-- TODO: Add necessary string values -->
 

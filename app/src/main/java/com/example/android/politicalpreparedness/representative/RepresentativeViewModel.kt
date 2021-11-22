@@ -9,17 +9,26 @@ import com.example.android.politicalpreparedness.network.models.Address
 import com.example.android.politicalpreparedness.representative.model.Representative
 import kotlinx.coroutines.launch
 
-class RepresentativeViewModel: ViewModel() {
+class RepresentativeViewModel : ViewModel() {
 
     //TODO: Establish live data for representatives and address
     private val _representatives = MutableLiveData<List<Representative>>()
     val representatives: LiveData<List<Representative>> = _representatives
 
+    val line1 = MutableLiveData<String>()
+    val line2 = MutableLiveData<String>()
+    val city = MutableLiveData<String>()
+    val state = MutableLiveData<String>()
+    val zip = MutableLiveData<String>()
+
     //TODO: Create function to fetch representatives from API from a provided address
     fun findRepresentatives(address: Address) {
         viewModelScope.launch {
-           val response =  CivicsApi.retrofitService.getRepresentativesAsync(address.toFormattedString()).await()
-            _representatives.value = response.offices.flatMap { office -> office.getRepresentatives(response.officials) }
+            val response =
+                CivicsApi.retrofitService.getRepresentativesAsync(address.toFormattedString())
+                    .await()
+            _representatives.value =
+                response.offices.flatMap { office -> office.getRepresentatives(response.officials) }
         }
     }
 
@@ -35,7 +44,20 @@ class RepresentativeViewModel: ViewModel() {
      */
 
     //TODO: Create function get address from geo location
+    fun setInputAddress(address: Address) {
+        line1.value = address.line1
+        line2.value = address.line2
+        city.value = address.city
+        state.value = address.state
+        zip.value = address.zip
+    }
 
     //TODO: Create function to get address from individual fields
+    fun getInputAddress(): Address? {
+        if (line1.value != null && city.value != null && state.value != null && zip.value != null) {
+            return Address(line1.value!!, line2.value, city.value!!, state.value!!, zip.value!!)
+        }
+        return null
+    }
 
 }
