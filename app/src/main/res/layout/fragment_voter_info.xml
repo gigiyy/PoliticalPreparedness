@@ -38,14 +38,16 @@
             app:layout_constraintTop_toBottomOf="@id/election_name"
             tools:text="12 November 2055" />
 
+        <!-- TODO: Add visual styling and content -->
         <androidx.constraintlayout.widget.Group
             android:id="@+id/state_group"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="@{viewModel.infoLoaded}"
-            app:constraint_referenced_ids="state_header, state_locations, state_ballot, state_correspondence_header" />
+            app:constraint_referenced_ids="state_header, location_layout, ballot_layout, state_correspondence_header"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
 
-        <!-- TODO: Add visual styling and content -->
         <TextView
             android:id="@+id/state_header"
             android:layout_width="wrap_content"
@@ -53,32 +55,63 @@
             android:layout_marginStart="@dimen/default_margin"
             android:text="@string/election_information"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/election_date"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/election_date" />
 
         <!-- TODO: Add click binding to open web URL -->
         <!-- TODO: Add visual styling and content -->
-        <TextView
-            android:id="@+id/state_locations"
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/location_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_margin"
+            android:gravity="center_vertical"
             android:onClick="@{() -> viewModel.setTargetUrl(viewModel.administrationBody.votingLocationFinderUrl)}"
-            android:text="@string/voting_locations"
-            app:layout_constraintStart_toStartOf="@id/election_date"
-            app:layout_constraintTop_toBottomOf="@id/state_header" />
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/state_header">
+
+            <TextView
+                android:id="@+id/state_locations"
+                android:layout_width="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="4dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_margin"
+                android:text="@string/voting_locations" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:srcCompat="@drawable/ic_www" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <!-- TODO: Add click binding to open web URL -->
         <!-- TODO: Add visual styling and content -->
-        <TextView
-            android:id="@+id/state_ballot"
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ballot_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_margin"
+            android:gravity="center_vertical"
             android:onClick="@{() -> viewModel.setTargetUrl(viewModel.administrationBody.ballotInfoUrl)}"
-            android:text="@string/ballot_information"
-            app:layout_constraintStart_toStartOf="@id/election_date"
-            app:layout_constraintTop_toBottomOf="@id/state_locations" />
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/location_layout">
+
+
+            <TextView
+                android:id="@+id/state_ballot"
+                android:layout_width="wrap_content"
+                android:padding="4dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_margin"
+                android:text="@string/ballot_information" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:srcCompat="@drawable/ic_www" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/address_group"
@@ -96,7 +129,7 @@
             android:text="@string/correspondence_information"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/election_date"
-            app:layout_constraintTop_toBottomOf="@id/state_ballot" />
+            app:layout_constraintTop_toBottomOf="@id/ballot_layout" />
 
         <!-- TODO: Add data binding -->
         <TextView
