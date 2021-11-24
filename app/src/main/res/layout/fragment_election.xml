@@ -28,16 +28,16 @@
 
             <TextView
                 android:id="@+id/upcoming_title"
+                style="@style/title_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
                 android:text="@string/upcoming_elections" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/upcoming_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="8dp"
+                android:layout_margin="4dp"
                 app:elections="@{viewModel.upcoming}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
@@ -57,16 +57,16 @@
 
             <TextView
                 android:id="@+id/saved_title"
+                style="@style/title_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
                 android:text="@string/saved_elections" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/saved_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="8dp"
+                android:layout_margin="4dp"
                 app:elections="@{viewModel.saved}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 

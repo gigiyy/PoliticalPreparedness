@@ -1,15 +1,12 @@
 package com.example.android.politicalpreparedness.election
 
-import android.app.Application
-import android.content.Context
-import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.android.politicalpreparedness.database.ElectionDao
-import com.example.android.politicalpreparedness.database.ElectionDatabase
 import com.example.android.politicalpreparedness.network.CivicsApi
 import com.example.android.politicalpreparedness.network.models.Election
 import kotlinx.coroutines.launch
-import java.lang.IllegalArgumentException
 
 //TODO: Construct ViewModel and provide election datasource
 class ElectionsViewModel(electionDao: ElectionDao) : ViewModel() {
@@ -31,7 +28,7 @@ class ElectionsViewModel(electionDao: ElectionDao) : ViewModel() {
     }
 
     //TODO: Create val and functions to populate live data for upcoming elections from the API and saved elections from local database
-    fun loadElections() {
+    private fun loadElections() {
         viewModelScope.launch {
             val electionResponse = CivicsApi.retrofitService.getElectionsAsync().await()
             _upcoming.value = electionResponse.elections
@@ -45,9 +42,5 @@ class ElectionsViewModel(electionDao: ElectionDao) : ViewModel() {
 
     fun doneNavigationOfVoterInfo() {
         _navigateToVoterInfo.value = null
-    }
-
-    companion object {
-        private const val TAG = "ElectionsViewModel"
     }
 }

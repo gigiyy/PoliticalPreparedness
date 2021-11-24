@@ -1,5 +1,6 @@
 package com.example.android.politicalpreparedness.election
 
+import android.view.View
 import androidx.lifecycle.*
 import com.example.android.politicalpreparedness.database.ElectionDao
 import com.example.android.politicalpreparedness.network.CivicsApi
@@ -20,6 +21,13 @@ class VoterInfoViewModel(private val dataSource: ElectionDao) : ViewModel() {
     //TODO: Add var and methods to support loading URLs
     val administrationBody: LiveData<AdministrationBody> = Transformations.map(_voterInfo) {
         it?.state?.first()?.electionAdministrationBody
+    }
+
+    private val _infoLoaded = MutableLiveData<Int>(View.INVISIBLE)
+    val infoLoaded: LiveData<Int> = _infoLoaded
+
+    val hasAddress: LiveData<Int> = Transformations.map(administrationBody) {
+        if (administrationBody.value?.correspondenceAddress != null) View.VISIBLE else View.INVISIBLE
     }
 
     private val _targetUrl = MutableLiveData<String>()
@@ -62,6 +70,7 @@ class VoterInfoViewModel(private val dataSource: ElectionDao) : ViewModel() {
                 division.getAddress(),
                 electionId.toLong()
             ).await()
+            _infoLoaded.value = View.VISIBLE
             _voterInfo.value = response
         }
         viewModelScope.launch {

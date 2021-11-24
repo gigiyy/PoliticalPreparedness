@@ -1,6 +1,6 @@
 package com.example.android.politicalpreparedness.election.adapter
 
-import android.icu.text.DateFormat
+import android.text.format.DateFormat
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +19,6 @@ fun bindRecycleView(recyclerView: RecyclerView, data: List<Election>?) {
 @BindingAdapter("electionDay")
 fun bindElectionDay(textView: TextView, electionDay: Date?) {
     electionDay?.let {
-        textView.text = DateFormat.getInstance().format(electionDay)
+        textView.text = DateFormat.format("EEE MMM dd HH:mm:ss zzz yyyy", electionDay)
     }
 }

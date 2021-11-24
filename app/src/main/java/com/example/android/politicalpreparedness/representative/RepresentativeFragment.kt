@@ -68,6 +68,7 @@ class DetailFragment : Fragment() {
                 Toast.makeText(requireContext(), R.string.no_address_provided, Toast.LENGTH_SHORT)
                     .show()
             } else {
+                Log.d(TAG, "searching with address ${address.toFormattedString()}")
                 viewModel.findRepresentatives(address)
             }
             hideKeyboard()

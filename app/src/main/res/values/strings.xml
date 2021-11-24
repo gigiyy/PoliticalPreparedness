@@ -15,6 +15,10 @@
     <string name="follow_election">Follow Election</string>
     <string name="location_access_denied">Please enable location access to retrieve your current address for you!</string>
     <string name="no_address_provided">Please input your address to search</string>
+    <string name="address_line_1">Address Line 1</string>
+    <string name="address_line_2">Address Line 2</string>
+    <string name="city">City</string>
+    <string name="zip">Zip</string>
 
     <!-- TODO: Add necessary string values -->
 
