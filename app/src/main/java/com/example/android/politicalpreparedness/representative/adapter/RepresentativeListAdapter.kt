@@ -42,12 +42,10 @@ class RepresentativeViewHolder(val binding: RepresentativeItemBinding) :
         binding.twitterIcon.visibility = View.GONE
         binding.wwwIcon.visibility = View.GONE
 
-        //TODO: Show social links ** Hint: Use provided helper methods
         item.official.channels?.let {
             Log.d(TAG, item.official.name + " - " + it.toString())
             showSocialLinks(it)
         }
-        //TODO: Show www link ** Hint: Use provided helper methods
         item.official.urls?.let {
             showWWWLinks(it)
         }
@@ -55,7 +53,6 @@ class RepresentativeViewHolder(val binding: RepresentativeItemBinding) :
         binding.executePendingBindings()
     }
 
-    //TODO: Add companion object to inflate ViewHolder (from)
     companion object {
         fun from(parent: ViewGroup): RepresentativeViewHolder {
             val inflater = LayoutInflater.from(parent.context)
@@ -105,7 +102,6 @@ class RepresentativeViewHolder(val binding: RepresentativeItemBinding) :
 
 }
 
-//TODO: Create RepresentativeDiffCallback
 class RepresentativeDiffCallback : DiffUtil.ItemCallback<Representative>() {
     override fun areItemsTheSame(oldItem: Representative, newItem: Representative): Boolean {
         return oldItem === newItem
@@ -116,7 +112,6 @@ class RepresentativeDiffCallback : DiffUtil.ItemCallback<Representative>() {
     }
 }
 
-//TODO: Create RepresentativeListener
 class RepresentativeListener(val clickListener: (representative: Representative) -> Unit) {
     fun onClick(representative: Representative) = clickListener(representative)
 }

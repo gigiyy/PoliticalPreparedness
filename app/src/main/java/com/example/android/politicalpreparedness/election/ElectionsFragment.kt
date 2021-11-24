@@ -18,7 +18,6 @@ import com.example.android.politicalpreparedness.network.models.Election
 
 class ElectionsFragment : Fragment() {
 
-    //TODO: Declare ViewModel
     private val viewModel: ElectionsViewModel by lazy {
         val database = ElectionDatabase.getInstance(requireContext()).electionDao
         ViewModelProvider(this, ElectionsViewModelFactory(database)).get(
@@ -32,13 +31,10 @@ class ElectionsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentElectionBinding.inflate(inflater)
-        //TODO: Add ViewModel values and create ViewModel
         binding.lifecycleOwner = this
 
-        //TODO: Add binding values
         binding.viewModel = viewModel
 
-        //TODO: Link elections to voter info
         val upcomingAdapter = ElectionListAdapter(ElectionListener { election ->
             viewModel.navigateToVoterInfoOf(election)
         })
@@ -47,7 +43,6 @@ class ElectionsFragment : Fragment() {
             viewModel.navigateToVoterInfoOf(election)
         })
 
-        //TODO: Initiate recycler adapters
         binding.upcomingList.adapter = upcomingAdapter
         binding.savedList.adapter = savedAdapter
 
@@ -63,12 +58,8 @@ class ElectionsFragment : Fragment() {
             }
         })
 
-        //TODO: Populate recycler adapters
-
         return binding.root
     }
-
-    //TODO: Refresh adapters when fragment loads
 
 }
 

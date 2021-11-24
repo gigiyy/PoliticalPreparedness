@@ -32,15 +32,13 @@ import java.util.*
 class DetailFragment : Fragment() {
 
     companion object {
-        //TODO: Add Constant for Location request
-        private val REQUEST_LOCATION_PERMISSION = 1
+        private const val REQUEST_LOCATION_PERMISSION = 1
         private const val TAG = "DetailFragment"
     }
 
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var binding: FragmentRepresentativeBinding
 
-    //TODO: Declare ViewModel
     private val viewModel: RepresentativeViewModel by lazy {
         ViewModelProvider(this).get(RepresentativeViewModel::class.java)
     }
@@ -51,17 +49,12 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        //TODO: Establish bindings
         binding = FragmentRepresentativeBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-        //TODO: Define and assign Representative adapter
         binding.viewModel = viewModel
         binding.representativeList.adapter = RepresentativeListAdapter()
 
-        //TODO: Populate Representative adapter
-
-        //TODO: Establish button listeners for field and location search
         binding.buttonSearch.setOnClickListener {
             val address = viewModel.getInputAddress()
             if (address == null) {
@@ -130,14 +123,12 @@ class DetailFragment : Fragment() {
                 }.show()
             }
         }
-        //TODO: Handle location permission result to get location on permission granted
     }
 
     private fun checkLocationPermissions(): Boolean {
         return if (isPermissionGranted()) {
             true
         } else {
-            //TODO: Request Location permissions
             requestPermissions(
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                 REQUEST_LOCATION_PERMISSION
@@ -147,7 +138,6 @@ class DetailFragment : Fragment() {
     }
 
     private fun isPermissionGranted(): Boolean {
-        //TODO: Check if permission is already granted and return (true = granted, false = denied/other)
         return ContextCompat.checkSelfPermission(
             requireContext(),
             Manifest.permission.ACCESS_FINE_LOCATION
@@ -156,8 +146,6 @@ class DetailFragment : Fragment() {
 
     @SuppressLint("MissingPermission")
     private fun getLocation() {
-        //TODO: Get location from LocationServices
-        //TODO: The geoCodeLocation method is a helper function to change the lat/long location to a human readable street address
         fusedLocationProviderClient.lastLocation.addOnSuccessListener {
             it?.let {
                 val address = geoCodeLocation(it)

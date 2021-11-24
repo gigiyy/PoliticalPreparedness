@@ -20,7 +20,6 @@ private const val ELECTIONS_URL = "elections"
 private const val VOTERINFO_URL = "voterinfo"
 private const val REPRESENTATIVES_URL = "representatives"
 
-// TODO: Add adapters for Java Date and custom adapter ElectionAdapter (included in project)
 private val moshi = Moshi.Builder()
     .add(ElectionAdapter())
     .add(Date::class.java, DateJsonAdapter())
@@ -39,18 +38,15 @@ private val retrofit = Retrofit.Builder()
  */
 
 interface CivicsApiService {
-    //TODO: Add elections API Call
     @GET(ELECTIONS_URL)
     fun getElectionsAsync(): Deferred<ElectionResponse>
 
-    //TODO: Add voterinfo API Call
     @GET(VOTERINFO_URL)
     fun getVoterInfoAsync(
         @Query("address") address: String,
         @Query("electionId") electionId: Long
     ): Deferred<VoterInfoResponse>
 
-    //TODO: Add representatives API Call
     @GET(REPRESENTATIVES_URL)
     fun getRepresentativesAsync(@Query("address") address: String): Deferred<RepresentativeResponse>
 }

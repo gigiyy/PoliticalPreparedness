@@ -15,7 +15,6 @@ import com.example.android.politicalpreparedness.representative.model.Representa
 fun fetchImage(view: ImageView, src: String?) {
     src?.let {
         val uri = src.toUri().buildUpon().scheme("https").build()
-        //TODO: Add Glide call to load image and circle crop - user ic_profile as a placeholder and for errors.
         Glide.with(view.context).load(uri).apply(
             RequestOptions().placeholder(R.drawable.ic_profile).error(R.drawable.ic_profile)
         ).circleCrop().into(view)
@@ -35,6 +34,7 @@ fun Spinner.setNewValue(value: String?) {
 }
 
 inline fun <reified T> toTypedAdapter(adapter: ArrayAdapter<*>): ArrayAdapter<T> {
+    @Suppress("UNCHECKED_CAST")
     return adapter as ArrayAdapter<T>
 }
 
