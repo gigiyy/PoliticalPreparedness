@@ -15,18 +15,16 @@
     </style>
 
     <style name="title_style">
-        <item name="android:layout_margin">4dp</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:layout_margin">@dimen/margin_small</item>
+        <item name="android:textSize">@dimen/title_text_size</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="icon_style">
-        <item name="android:layout_width">24dp</item>
-        <item name="android:layout_height">24dp</item>
+        <item name="android:layout_width">@dimen/icon_size</item>
+        <item name="android:layout_height">@dimen/icon_size</item>
         <item name="android:visibility">gone</item>
-        <item name="android:layout_margin">4dp</item>
+        <item name="android:layout_margin">@dimen/margin_small</item>
     </style>
-
-    <!-- TODO: Add necessary styles -->
 
 </resources>

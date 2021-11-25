@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Add data binding node for Voter Info ViewModel -->
     <data>
 
         <variable
@@ -16,29 +15,26 @@
         android:layout_height="match_parent"
         tools:context="com.example.android.politicalpreparedness.MainActivity">
 
-        <!-- TODO: Add title to toolbar -->
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/election_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark"
-            android:padding="@dimen/default_padding"
+            android:padding="@dimen/padding_default"
             android:singleLine="true"
             app:layout_constraintTop_toTopOf="parent"
             app:title="@{viewModel.voterInfo.election.name}"
             app:titleTextColor="@color/white" />
 
-        <!-- TODO: Add visual styling -->
         <TextView
             android:id="@+id/election_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/default_padding"
+            android:padding="@dimen/padding_default"
             app:electionDay="@{viewModel.voterInfo.election.electionDay}"
             app:layout_constraintTop_toBottomOf="@id/election_name"
             tools:text="12 November 2055" />
 
-        <!-- TODO: Add visual styling and content -->
         <androidx.constraintlayout.widget.Group
             android:id="@+id/state_group"
             android:layout_width="match_parent"
@@ -52,14 +48,12 @@
             android:id="@+id/state_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginStart="@dimen/margin_default"
             android:text="@string/election_information"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/election_date" />
 
-        <!-- TODO: Add click binding to open web URL -->
-        <!-- TODO: Add visual styling and content -->
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/location_layout"
             android:layout_width="match_parent"
@@ -74,19 +68,17 @@
                 android:id="@+id/state_locations"
                 android:layout_width="wrap_content"
                 android:gravity="center_vertical"
-                android:padding="4dp"
+                android:padding="@dimen/padding_small"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginStart="@dimen/margin_default"
                 android:text="@string/voting_locations" />
 
             <androidx.constraintlayout.utils.widget.ImageFilterView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
                 app:srcCompat="@drawable/ic_www" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <!-- TODO: Add click binding to open web URL -->
-        <!-- TODO: Add visual styling and content -->
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/ballot_layout"
             android:layout_width="match_parent"
@@ -101,14 +93,14 @@
             <TextView
                 android:id="@+id/state_ballot"
                 android:layout_width="wrap_content"
-                android:padding="4dp"
+                android:padding="@dimen/padding_small"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginStart="@dimen/margin_default"
                 android:text="@string/ballot_information" />
 
             <androidx.constraintlayout.utils.widget.ImageFilterView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
                 app:srcCompat="@drawable/ic_www" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -120,35 +112,32 @@
             android:visibility="@{viewModel.hasAddress}"
             app:constraint_referenced_ids="state_correspondence_header,address" />
 
-        <!-- TODO: Add visual styling and content -->
         <TextView
             android:id="@+id/state_correspondence_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginStart="@dimen/margin_default"
             android:text="@string/correspondence_information"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/election_date"
             app:layout_constraintTop_toBottomOf="@id/ballot_layout" />
 
-        <!-- TODO: Add data binding -->
         <TextView
             android:id="@+id/address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginStart="@dimen/margin_default"
             android:text="@{viewModel.administrationBody.correspondenceAddress.toFormattedString()}"
             app:layout_constraintStart_toStartOf="@id/election_date"
             app:layout_constraintTop_toBottomOf="@id/state_correspondence_header" />
 
-        <!-- TODO: Add button to save election to Room -->
         <Button
             android:id="@+id/save_button"
             style="@style/button_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_margin"
-            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_marginStart="@dimen/margin_default"
+            android:layout_marginEnd="@dimen/margin_default"
             android:onClick="@{() -> viewModel.saveButtonClicked(viewModel.voterInfo.election)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="default_padding">8dp</dimen>
-    <dimen name="default_margin">8dp</dimen>
-
-    <!-- TODO: Add necessary dimension values -->s
-
+    <dimen name="padding_default">8dp</dimen>
+    <dimen name="margin_default">8dp</dimen>
+    <dimen name="margin_small">4dp</dimen>
+    <dimen name="fill_parent">0dp</dimen>
+    <dimen name="padding_small">4dp</dimen>
+    <dimen name="icon_size">24dp</dimen>
+    <dimen name="profile_size">60dp</dimen>
+    <dimen name="social_links_width">100dp</dimen>
+    <dimen name="title_text_size">18sp</dimen>
+    <dimen name="form_move_up">-100dp</dimen>
 </resources>

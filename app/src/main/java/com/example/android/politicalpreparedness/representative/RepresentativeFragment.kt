@@ -18,7 +18,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.example.android.politicalpreparedness.R
 import com.example.android.politicalpreparedness.databinding.FragmentRepresentativeBinding
 import com.example.android.politicalpreparedness.network.models.Address
@@ -39,9 +39,7 @@ class DetailFragment : Fragment() {
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var binding: FragmentRepresentativeBinding
 
-    private val viewModel: RepresentativeViewModel by lazy {
-        ViewModelProvider(this).get(RepresentativeViewModel::class.java)
-    }
+    private val viewModel by viewModels<RepresentativeViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -41,7 +41,6 @@ class RepresentativeViewModel : ViewModel() {
 
      */
 
-    //TODO: Create function get address from geo location
     fun setInputAddress(address: Address) {
         line1.value = address.line1
         line2.value = address.line2
@@ -50,7 +49,6 @@ class RepresentativeViewModel : ViewModel() {
         zip.value = address.zip
     }
 
-    //TODO: Create function to get address from individual fields
     fun getInputAddress(): Address? {
         if (line1.value != null && city.value != null && state.value != null && zip.value != null) {
             return Address(line1.value!!, line2.value, city.value!!, state.value!!, zip.value!!)

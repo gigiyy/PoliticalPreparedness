@@ -43,8 +43,10 @@ class ElectionsFragment : Fragment() {
             viewModel.navigateToVoterInfoOf(election)
         })
 
-        binding.upcomingList.adapter = upcomingAdapter
-        binding.savedList.adapter = savedAdapter
+        with(binding) {
+            upcomingList.adapter = upcomingAdapter
+            savedList.adapter = savedAdapter
+        }
 
         viewModel.navigateToVoterInfo.observe(viewLifecycleOwner, Observer { election ->
             election?.let {

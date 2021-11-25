@@ -3,17 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ConstraintSet android:id="@+id/start">
-        <!-- TODO: Add visual styling and content -->
-
         <Constraint android:id="@id/form_layout" />
         <Constraint android:id="@id/representative_layout" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
-        <!-- TODO: Add visual styling and content -->
         <Constraint
             android:id="@id/form_layout"
-            android:translationY="-100dp"
+            android:translationY="@dimen/form_move_up"
             app:layout_constraintBottom_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
